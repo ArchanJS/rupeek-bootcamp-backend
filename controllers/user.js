@@ -71,6 +71,7 @@ exports.addOrRemoveInterest=async(req,res)=>{
         let agg=check?"$addToSet":"$pull";
         if(valid){
             const interest=await Interest.findOne({_id:params.id});
+            console.log(params.id);
             await User.findOneAndUpdate({_id:req.user._id},{
                 [agg]:{interests:interest.interestName}
             });
